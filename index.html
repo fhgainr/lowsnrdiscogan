@@ -20,539 +20,328 @@
             <div class="row">
                 <div class="text">
                     <div class="intro", style="text-align: center">
-                        <h1 class="text-center"><br><br>A HYBRID APPROACH FOR LOW-COMPLEXITY JOINT ACOUSTIC ECHO AND NOISE REDUCTION<br></h1>
-                        <h5 class="text-center"><i> Shrishti Saha Shetu, Naveen Kumar Desiraju, Jose Miguel Martinez Aponte, Emanu&#235;l A. P. Habets, Edwin Mabande</i> <br><br></h5>
+                        <h1 class="text-center"><br><br>GAN-Based Speech Enhancement for Low SNR Using Latent Feature Conditioning<br></h1>
+                        <h5 class="text-center"><i> Shrishti Saha Shetu, Emanu&#235;l A. P. Habets, Andreas Brendel</i> <br><br></h5>
                         <a href="https://www.iis.fraunhofer.de/en/ff/amm.html"> <img src="./assets/img/fhg_iis_logo.png" alt="FhG_IIS" width="240" height="77" ></img></a>
                         <h5 class="text-center"> Fraunhofer IIS, Am Wolfsmantel 33, 91058 Erlangen, Germany</h5>
-                        <p class="text-center"><i>{shrishti.saha.shetu, naveen.kumar.desiraju, miguel.martinez, emanuel.habets, edwin.mabande}@iis.fraunhofer.de</i> <br></p>
+                        <p class="text-center"><i>{shrishti.saha.shetu, emanuel.habets, andreas.brendel}@iis.fraunhofer.de</i> <br></p>
                         <p class="text-center"> </p>
                     </div>
                     <div class="text">
                         <h2>Abstract</h2>
-                        <p class="text-justify"> Deep learning-based methods that jointly perform the task of acoustic echo and noise reduction (AENR) often require high memory and computational resources, making them unsuitable for real-time deployment on low-resource platforms such as embedded devices.
-                            We propose a low-complexity hybrid approach for joint AENR by employing a single model to suppress both residual echo and noise components. Specifically, we integrate the state-of-the-art (SOTA) ULCNet model, which was originally proposed to achieve ultra-low complexity noise suppression, in a hybrid system and train it for joint AENR.
-                            We show that the proposed approach achieves better echo reduction and comparable noise reduction performance with much lower computational complexity and memory requirements than all considered SOTA methods, at the cost of slight degradation in speech quality.<br></p>
+                        <p class="text-justify"> Enhancing speech quality under adverse SNR conditions remains a significant challenge for discriminative deep neural network (DNN)-based approaches. 
+                            In this work, we propose DisCoGAN, which is a time-frequency-domain generative adversarial network (GAN) conditioned by the latent features of a discriminative model pre-trained for 
+                            speech enhancement in low SNR scenarios. Our proposed method achieves superior performance compared to state-of-the-arts discriminative methods and also surpasses end-to-end (E2E)
+                            trained GAN models. We also investigate the impact of various configurations for conditioning the proposed GAN model with the discriminative model and 
+                            assess their influence on enhancing speech quality.<br></p>
                         <figure></figure>
                         <p></p>
                     </div>
                     <div id="Methods"></div>
                     <div class="text">
-                        <h2>Evaluation Scenarios</h2>
-                        <p>In our work, we evaluate our proposed methods in different scenarios, namely FarEnd SingleTalk, Doubletalk, NearEnd SingleTalk and for NR Task. <br> <br>
+                    <h2>Evaluation Scenarios</h2>
+                        <p>In our work, we evaluate different SOTA discriminative deep learning-based noise reduction methods in various SNR scenraios.<br> <br>
 
                             Following you can find some processed samples with different Methods:
 
-
-                            <h2>1. FarEnd SingleTalk <a href="#FST"> --> Go to the samples</a></h2> 
-                            <h2>2. Doubletalk <a href="#DT"> --> Go to the samples</a></h2> 
-                            <h2>3. NearEnd SingleTalk <a href="#NST"> -->  Go to the samples</a></h2>
-                            <h2>4. NR Task <a href="#NR"> -->  Go to the samples</a></h2>
-
-
                           <br>
-                          <div id="FST"></div>
-                          <h2>1. FarEnd SingleTalk Scenarios</h2>
-                        </p>
-                        <h5>Item 1</h5>
-                        <p>
-                          <div class="choir">
-                              <ts-track title="Mic">
-                                  <ts-source src="./NST/0DDAYMovP0eS1P4rWEh0QA_farend-singletalk_mic.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="lpb"</sub> >
-                                  <ts-source src="./NST/lpb/0DDAYMovP0eS1P4rWEh0QA_farend-singletalk_lpb.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="KF">
-                                  <ts-source src="./NST/0DDAYMovP0eS1P4rWEh0QA_farend-singletalk_kf.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER">
-                                  <ts-source src="./NST/0DDAYMovP0eS1P4rWEh0QA_farend-singletalk_aer.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER+ULCNetFreq">
-                                <ts-source src="./NST/0DDAYMovP0eS1P4rWEh0QA_farend-singletalk_aer+ainr.mp3"></ts-source>
-                            </ts-track>
-                              <ts-track title="Proposed ULCNetAENR">
-                                <ts-source src="./NST/0DDAYMovP0eS1P4rWEh0QA_farend-singletalk_aenr.mp3"></ts-source>
-                            </ts-track>
-                          </div>
-
-                        </p>
-                        <h5>Item 2</h5>
-                         <p>
-                          <div class="choir">
-                              <ts-track title="Mic">
-                                  <ts-source src="./NST/0MUptpjaOEykR0UDj8telw_farend-singletalk-with-movement_mic.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="lpb"</sub> >
-                                  <ts-source src="./NST/lpb/0MUptpjaOEykR0UDj8telw_farend-singletalk-with-movement_lpb.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="KF">
-                                  <ts-source src="./NST/0MUptpjaOEykR0UDj8telw_farend-singletalk-with-movement_kf.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER">
-                                  <ts-source src="./NST/0MUptpjaOEykR0UDj8telw_farend-singletalk-with-movement_aer.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER+ULCNetFreq">
-                                <ts-source src="./NST/0MUptpjaOEykR0UDj8telw_farend-singletalk-with-movement_aer+ainr.mp3"></ts-source>
-                            </ts-track>
-                              <ts-track title="Proposed ULCNetAENR">
-                                <ts-source src="./NST/0MUptpjaOEykR0UDj8telw_farend-singletalk-with-movement_aenr.mp3"></ts-source>
-                            </ts-track>
-                          </div>
-
-                        </p>
-                        <h5>Item 3</h5>
-                        <p>
-                          <div class="choir">
-                              <ts-track title="Mic">
-                                  <ts-source src="./NST/0ccd139d-743b-450a-b55e-5fe132fd1d57_farend-singletalk-with-movement_mic.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="lpb"</sub> >
-                                  <ts-source src="./NST/lpb/0ccd139d-743b-450a-b55e-5fe132fd1d57_farend-singletalk-with-movement_lpb.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="KF">
-                                  <ts-source src="./NST/0ccd139d-743b-450a-b55e-5fe132fd1d57_farend-singletalk-with-movement_kf.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER">
-                                  <ts-source src="./NST/0ccd139d-743b-450a-b55e-5fe132fd1d57_farend-singletalk-with-movement_aer.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER+ULCNetFreq">
-                                <ts-source src="./NST/0ccd139d-743b-450a-b55e-5fe132fd1d57_farend-singletalk-with-movement_aer+ainr.mp3"></ts-source>
-                            </ts-track>
-                              <ts-track title="Proposed ULCNetAENR">
-                                <ts-source src="./NST/0ccd139d-743b-450a-b55e-5fe132fd1d57_farend-singletalk-with-movement_aenr.mp3"></ts-source>
-                            </ts-track>
-                          </div>
-
-                        </p>
-                        <h5>Item 4</h5>
-                        <p>
-                          <div class="choir">
-                              <ts-track title="Mic">
-                                  <ts-source src="./NST/0kvK91dwhkWeBObblh0nLw_farend-singletalk_mic.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="lpb"</sub> >
-                                  <ts-source src="./NST/lpb/0kvK91dwhkWeBObblh0nLw_farend-singletalk_lpb.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="KF">
-                                  <ts-source src="./NST/0kvK91dwhkWeBObblh0nLw_farend-singletalk_kf.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER">
-                                  <ts-source src="./NST/0kvK91dwhkWeBObblh0nLw_farend-singletalk_aer.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER+ULCNetFreq">
-                                <ts-source src="./NST/0kvK91dwhkWeBObblh0nLw_farend-singletalk_aer+ainr.mp3"></ts-source>
-                            </ts-track>
-                              <ts-track title="Proposed ULCNetAENR">
-                                <ts-source src="./NST/0kvK91dwhkWeBObblh0nLw_farend-singletalk_aenr.mp3"></ts-source>
-                            </ts-track>
-                          </div>
-
-                        </p>
-                           <div class="choir">
-                              <ts-track title="Mic">
-                                  <ts-source src="./NST/1d02gCYcMUidvxn6YIi0TQ_farend-singletalk_mic.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="lpb"</sub> >
-                                  <ts-source src="./NST/lpb/1d02gCYcMUidvxn6YIi0TQ_farend-singletalk_lpb.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="KF">
-                                  <ts-source src="./NST/1d02gCYcMUidvxn6YIi0TQ_farend-singletalk_kf.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER">
-                                  <ts-source src="./NST/1d02gCYcMUidvxn6YIi0TQ_farend-singletalk_aer.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER+ULCNetFreq">
-                                <ts-source src="./NST/1d02gCYcMUidvxn6YIi0TQ_farend-singletalk_aer+ainr.mp3"></ts-source>
-                            </ts-track>
-                              <ts-track title="Proposed ULCNetAENR">
-                                <ts-source src="./NST/1d02gCYcMUidvxn6YIi0TQ_farend-singletalk_aenr.mp3"></ts-source>
-                            </ts-track>
-                          </div>
-
-                        </p>
-                <br>
-
-            <div id="DT"></div>
-                        <h2>2. DoubleTalk</h2>
-                    </p>
-                    <h5>Item 1</h5>
-                    <p>
-                         <div class="choir">
-                              <ts-track title="Mic">
-                                  <ts-source src="./dt/00t5hG031EmZTpJtcnhS0g_doubletalk-with-movement_mic.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="lpb"</sub> >
-                                  <ts-source src="./dt/lpb/00t5hG031EmZTpJtcnhS0g_doubletalk-with-movement_lpb.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="KF">
-                                  <ts-source src="./dt/00t5hG031EmZTpJtcnhS0g_doubletalk-with-movement_kf.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER">
-                                  <ts-source src="./dt/00t5hG031EmZTpJtcnhS0g_doubletalk-with-movement_aer.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER+ULCNetFreq">
-                                <ts-source src="./dt/00t5hG031EmZTpJtcnhS0g_doubletalk-with-movement_aer+ainr.mp3"></ts-source>
-                            </ts-track>
-                              <ts-track title="Proposed ULCNetAENR">
-                                <ts-source src="./dt/00t5hG031EmZTpJtcnhS0g_doubletalk-with-movement_aenr.mp3"></ts-source>
-                            </ts-track>
-                          </div>
-
-                    </p>
-                    <h5>Item 2</h5>
-                    <p>
-                        <div class="choir">
-                              <ts-track title="Mic">
-                                  <ts-source src="./dt/0MUptpjaOEykR0UDj8telw_doubletalk_mic.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="lpb"</sub> >
-                                  <ts-source src="./dt/lpb/0MUptpjaOEykR0UDj8telw_doubletalk_lpb.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="KF">
-                                  <ts-source src="./dt/0MUptpjaOEykR0UDj8telw_doubletalk_kf.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER">
-                                  <ts-source src="./dt/0MUptpjaOEykR0UDj8telw_doubletalk_aer.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER+ULCNetFreq">
-                                <ts-source src="./dt/0MUptpjaOEykR0UDj8telw_doubletalk_aer+ainr.mp3"></ts-source>
-                            </ts-track>
-                              <ts-track title="Proposed ULCNetAENR">
-                                <ts-source src="./dt/0MUptpjaOEykR0UDj8telw_doubletalk_aenr.mp3"></ts-source>
-                            </ts-track>
-                          </div>
-
-                    </p>
-                    <h5>Item 3</h5>
-                    <p>
-                    <div class="choir">
-                              <ts-track title="Mic">
-                                  <ts-source src="./dt/00t5hG031EmZTpJtcnhS0g_doubletalk_mic.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="lpb"</sub> >
-                                  <ts-source src="./dt/lpb/00t5hG031EmZTpJtcnhS0g_doubletalk_lpb.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="KF">
-                                  <ts-source src="./dt/00t5hG031EmZTpJtcnhS0g_doubletalk_kf.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER">
-                                  <ts-source src="./dt/00t5hG031EmZTpJtcnhS0g_doubletalk_aer.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER+ULCNetFreq">
-                                <ts-source src="./dt/00t5hG031EmZTpJtcnhS0g_doubletalk_aer+ainr.mp3"></ts-source>
-                            </ts-track>
-                              <ts-track title="Proposed ULCNetAENR">
-                                <ts-source src="./dt/00t5hG031EmZTpJtcnhS0g_doubletalk_aenr.mp3"></ts-source>
-                            </ts-track>
-                          </div>
-
-                    </p>
-                    <h5>Item 4</h5>
-                    <p>
-                    <div class="choir">
-                              <ts-track title="Mic">
-                                  <ts-source src="./dt/1ERVI7lH8UuKIzAhWo0kgg_doubletalk_mic.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="lpb"</sub> >
-                                  <ts-source src="./dt/lpb/1ERVI7lH8UuKIzAhWo0kgg_doubletalk_lpb.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="KF">
-                                  <ts-source src="./dt/1ERVI7lH8UuKIzAhWo0kgg_doubletalk_kf.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER">
-                                  <ts-source src="./dt/1ERVI7lH8UuKIzAhWo0kgg_doubletalk_aer.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER+ULCNetFreq">
-                                <ts-source src="./dt/1ERVI7lH8UuKIzAhWo0kgg_doubletalk_aer+ainr.mp3"></ts-source>
-                            </ts-track>
-                              <ts-track title="Proposed ULCNetAENR">
-                                <ts-source src="./dt/1ERVI7lH8UuKIzAhWo0kgg_doubletalk_aenr.mp3"></ts-source>
-                            </ts-track>
-                          </div>
-                      <h5>Item 5</h5>
-                    <p>
-                      <div class="choir">
-                              <ts-track title="Mic">
-                                  <ts-source src="./dt/1bM91HJIgE22y0KoQjI29w_doubletalk-with-movement_mic.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="lpb"</sub> >
-                                  <ts-source src="./dt/lpb/1bM91HJIgE22y0KoQjI29w_doubletalk-with-movement_lpb.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="KF">
-                                  <ts-source src="./dt/1bM91HJIgE22y0KoQjI29w_doubletalk-with-movement_kf.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER">
-                                  <ts-source src="./dt/1bM91HJIgE22y0KoQjI29w_doubletalk-with-movement_aer.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER+ULCNetFreq">
-                                <ts-source src="./dt/1bM91HJIgE22y0KoQjI29w_doubletalk-with-movement_aer+ainr.mp3"></ts-source>
-                            </ts-track>
-                              <ts-track title="Proposed ULCNetAENR">
-                                <ts-source src="./dt/1bM91HJIgE22y0KoQjI29w_doubletalk-with-movement_aenr.mp3"></ts-source>
-                            </ts-track>
-                          </div>
-
-                    </p>
-                    <br>
-
-                  <div id="NST"></div>
-                        <h2>3. NearEnd SingleTalk</h2>
-                    </p>
-                    <h5>Item 1</h5>
-                    <p>
-                         <div class="choir">
-                              <ts-track title="Mic">
-                                  <ts-source src="./nst/00d2fda6-46a5-4380-933d-335f4e00bd86_nearend-singletalk_mic.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="lpb"</sub> >
-                                  <ts-source src="./nst/lpb/00d2fda6-46a5-4380-933d-335f4e00bd86_nearend-singletalk_lpb.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="KF">
-                                  <ts-source src="./nst/00d2fda6-46a5-4380-933d-335f4e00bd86_nearend-singletalk_kf.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER">
-                                  <ts-source src="./nst/00d2fda6-46a5-4380-933d-335f4e00bd86_nearend-singletalk_aer.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER+ULCNetFreq">
-                                <ts-source src="./nst/00d2fda6-46a5-4380-933d-335f4e00bd86_nearend-singletalk_aer+ainr.mp3"></ts-source>
-                            </ts-track>
-                              <ts-track title="Proposed ULCNetAENR">
-                                <ts-source src="./nst/00d2fda6-46a5-4380-933d-335f4e00bd86_nearend-singletalk_aenr.mp3"></ts-source>
-                            </ts-track>
-                          </div>
-
-                    </p>
-                    <h5>Item 2</h5>
-                    <p>
-                        <div class="choir">
-                              <ts-track title="Mic">
-                                  <ts-source src="./nst/0GM6HqJCwUqGKDMb35gBKg_nearend-singletalk_mic.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="lpb"</sub> >
-                                  <ts-source src="./nst/lpb/0GM6HqJCwUqGKDMb35gBKg_nearend-singletalk_lpb.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="KF">
-                                  <ts-source src="./nst/0GM6HqJCwUqGKDMb35gBKg_nearend-singletalk_kf.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER">
-                                  <ts-source src="./nst/0GM6HqJCwUqGKDMb35gBKg_nearend-singletalk_aer.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER+ULCNetFreq">
-                                <ts-source src="./nst/0GM6HqJCwUqGKDMb35gBKg_nearend-singletalk_aer+ainr.mp3"></ts-source>
-                            </ts-track>
-                              <ts-track title="Proposed ULCNetAENR">
-                                <ts-source src="./nst/0GM6HqJCwUqGKDMb35gBKg_nearend-singletalk_aenr.mp3"></ts-source>
-                            </ts-track>
-                          </div>
-
-                    </p>
-                    <h5>Item 3</h5>
-                    <p>
-                    <div class="choir">
-                              <ts-track title="Mic">
-                                  <ts-source src="./nst/0a60cae0-d1a1-409f-af55-29949398bf36_nearend-singletalk_mic.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="lpb"</sub> >
-                                  <ts-source src="./nst/lpb/0a60cae0-d1a1-409f-af55-29949398bf36_nearend-singletalk_lpb.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="KF">
-                                  <ts-source src="./nst/0a60cae0-d1a1-409f-af55-29949398bf36_nearend-singletalk_kf.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER">
-                                  <ts-source src="./nst/0a60cae0-d1a1-409f-af55-29949398bf36_nearend-singletalk_aer.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER+ULCNetFreq">
-                                <ts-source src="./nst/0a60cae0-d1a1-409f-af55-29949398bf36_nearend-singletalk_aer+ainr.mp3"></ts-source>
-                            </ts-track>
-                              <ts-track title="Proposed ULCNetAENR">
-                                <ts-source src="./nst/0a60cae0-d1a1-409f-af55-29949398bf36_nearend-singletalk_aenr.mp3"></ts-source>
-                            </ts-track>
-                          </div>
-
-                    </p>
-                    <h5>Item 4</h5>
-                    <p>
-                     <div class="choir">
-                              <ts-track title="Mic">
-                                  <ts-source src="./nst/0c923332-2145-4c03-bec9-415e8792db13_nearend-singletalk_mic.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="lpb"</sub> >
-                                  <ts-source src="./nst/lpb/0c923332-2145-4c03-bec9-415e8792db13_nearend-singletalk_lpb.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="KF">
-                                  <ts-source src="./nst/0c923332-2145-4c03-bec9-415e8792db13_nearend-singletalk_kf.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER">
-                                  <ts-source src="./nst/0c923332-2145-4c03-bec9-415e8792db13_nearend-singletalk_aer.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER+ULCNetFreq">
-                                <ts-source src="./nst/0c923332-2145-4c03-bec9-415e8792db13_nearend-singletalk_aer+ainr.mp3"></ts-source>
-                            </ts-track>
-                              <ts-track title="Proposed ULCNetAENR">
-                                <ts-source src="./nst/0c923332-2145-4c03-bec9-415e8792db13_nearend-singletalk_aenr.mp3"></ts-source>
-                            </ts-track>
-                          </div>
-                      <h5>Item 5</h5>
-                    <p>
-                      <div class="choir">
-                              <ts-track title="Mic">
-                                  <ts-source src="./nst/0ge5avh5skCpMilSy1UPIw_nearend-singletalk_mic.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="lpb"</sub> >
-                                  <ts-source src="./nst/lpb/0ge5avh5skCpMilSy1UPIw_nearend-singletalk_lpb.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="KF">
-                                  <ts-source src="./nst/0ge5avh5skCpMilSy1UPIw_nearend-singletalk_kf.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER">
-                                  <ts-source src="./nst/0ge5avh5skCpMilSy1UPIw_nearend-singletalk_aer.mp3"></ts-source>
-                              </ts-track>
-                              <ts-track title="ULCNetAER+ULCNetFreq">
-                                <ts-source src="./nst/0ge5avh5skCpMilSy1UPIw_nearend-singletalk_aer+ainr.mp3"></ts-source>
-                            </ts-track>
-                              <ts-track title="Proposed ULCNetAENR">
-                                <ts-source src="./nst/0ge5avh5skCpMilSy1UPIw_nearend-singletalk_aenr.mp3"></ts-source>
-                            </ts-track>
-                          </div>
-
-                    </p>
-
-            <br>
             <div id="NR"></div>
-                        <h2>4. NR Task</h2>
                     </p>
-                    <h5>Item 1</h5>
+                    <h5>Item 1 (SNR: -4dB, Speaker: Female)</h5>
                     <p>
                          <div class="choir">
                               <ts-track title="Noisy">
-                                  <ts-source src="./NR/P0/Noisy.mp3"></ts-source>
+                                  <ts-source src="./examples/1/clean_fileid_6_*1-56234-A-9*_snr-4_tl-20_fileid_717.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="DeepFilterNet"</sub> >
-                                  <ts-source src="./NR/P0/df.mp3"></ts-source>
+                              <ts-track title="DCCRN"</sub> >
+                                  <ts-source src="./examples/1/dccrn_speech_mt_lowsnr_crm.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="DeepFilterNet2">
-                                  <ts-source src="./NR/P0/df2.mp3"></ts-source>
+                              <ts-track title="TaylorSENet">
+                                  <ts-source src="./examples/1/taylorsenet_speech_mt_lowsnr_crm.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="ULCNetFreq">
-                                  <ts-source src="./NR/P0/Freq.mp3"></ts-source>
+                              <ts-track title="FullSubNet+">
+                                  <ts-source src="./examples/1/fullsubnetplus_speech_mt_lowsnr_crm.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="ULCNetMS">
-                                  <ts-source src="./NR/P0/MS.mp3"></ts-source>
+                              <ts-track title="GCRN">
+                                  <ts-source src="./examples/1/gcrn_speech_mt_lowsnr_crm.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="ULCNetAER+ULCNetFreq">
-                                <ts-source src="./NR/P0/aer+ainr.mp3"></ts-source>
+                              <ts-track title="CRN">
+                                <ts-source src="./examples/1/crn_speech_mt_lowsnr_crm.mp3"></ts-source>
                             </ts-track>
-                              <ts-track title="Proposed ULCNetAENR">
-                                <ts-source src="./NR/P0/aenr.mp3"></ts-source>
+                              <ts-track title="DDAEC">
+                                <ts-source src="./examples/1/ddaec_speech_mt_lowsnr_crm.mp3"></ts-source>
+                            </ts-track>
+                            <ts-track title="Clean">
+                                <ts-source src="./examples/1/clean.mp3"></ts-source>
                             </ts-track>
                           </div>
 
                     </p>
-                    <h5>Item 2</h5>
+                    <h5>Item 2 (SNR: -6dB, Speaker: Female)</h5>
                     <p>
-                         <div class="choir">
+                        <div class="choir">
                               <ts-track title="Noisy">
-                                  <ts-source src="./NR/P4/Noisy.mp3"></ts-source>
+                                  <ts-source src="./examples/2/clean_fileid_7_*1-19501-A-7*_snr-6_tl-25_fileid_709.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="DeepFilterNet"</sub> >
-                                  <ts-source src="./NR/P4/df.mp3"></ts-source>
+                              <ts-track title="DCCRN"</sub> >
+                                  <ts-source src="./examples/2/dccrn_speech_mt_lowsnr_crm.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="DeepFilterNet2">
-                                  <ts-source src="./NR/P4/df2.mp3"></ts-source>
+                              <ts-track title="TaylorSENet">
+                                  <ts-source src="./examples/2/taylorsenet_speech_mt_lowsnr_crm.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="ULCNetFreq">
-                                  <ts-source src="./NR/P4/Freq.mp3"></ts-source>
+                              <ts-track title="FullSubNet+">
+                                  <ts-source src="./examples/2/fullsubnetplus_speech_mt_lowsnr_crm.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="ULCNetMS">
-                                  <ts-source src="./NR/P4/MS.mp3"></ts-source>
+                              <ts-track title="GCRN">
+                                  <ts-source src="./examples/2/gcrn_speech_mt_lowsnr_crm.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="ULCNetAER+ULCNetFreq">
-                                <ts-source src="./NR/P4/aer+ainr.mp3"></ts-source>
+                              <ts-track title="CRN">
+                                <ts-source src="./examples/2/crn_speech_mt_lowsnr_crm.mp3"></ts-source>
                             </ts-track>
-                              <ts-track title="Proposed ULCNetAENR">
-                                <ts-source src="./NR/P4/aenr.mp3"></ts-source>
+                              <ts-track title="DDAEC">
+                                <ts-source src="./examples/2/ddaec_speech_mt_lowsnr_crm.mp3"></ts-source>
+                            </ts-track>
+                            <ts-track title="Clean">
+                                <ts-source src="./examples/2/clean.mp3"></ts-source>
                             </ts-track>
                           </div>
 
                     </p>
-                    <h5>Item 3</h5>
+                    <h5>Item 3 (SNR: -2dB, Speaker: Male)</h5>
                     <p>
                     <div class="choir">
                               <ts-track title="Noisy">
-                                  <ts-source src="./NR/P9/Noisy.mp3"></ts-source>
+                                  <ts-source src="./examples/4/clean_fileid_14_*4-204123-A-39*_snr-2_tl-25_fileid_602.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="DeepFilterNet"</sub> >
-                                  <ts-source src="./NR/P9/df.mp3"></ts-source>
+                              <ts-track title="DCCRN"</sub> >
+                                  <ts-source src="./examples/4/dccrn_speech_mt_lowsnr_crm.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="DeepFilterNet2">
-                                  <ts-source src="./NR/P9/df2.mp3"></ts-source>
+                              <ts-track title="TaylorSENet">
+                                  <ts-source src="./examples/4/taylorsenet_speech_mt_lowsnr_crm.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="ULCNetFreq">
-                                  <ts-source src="./NR/P9/Freq.mp3"></ts-source>
+                              <ts-track title="FullSubNet+">
+                                  <ts-source src="./examples/4/fullsubnetplus_speech_mt_lowsnr_crm.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="ULCNetMS">
-                                  <ts-source src="./NR/P9/MS.mp3"></ts-source>
+                              <ts-track title="GCRN">
+                                  <ts-source src="./examples/4/gcrn_speech_mt_lowsnr_crm.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="ULCNetAER+ULCNetFreq">
-                                <ts-source src="./NR/P9/aer+ainr.mp3"></ts-source>
+                              <ts-track title="CRN">
+                                <ts-source src="./examples/4/crn_speech_mt_lowsnr_crm.mp3"></ts-source>
                             </ts-track>
-                              <ts-track title="Proposed ULCNetAENR">
-                                <ts-source src="./NR/P9/aenr.mp3"></ts-source>
+                              <ts-track title="DDAEC">
+                                <ts-source src="./examples/4/ddaec_speech_mt_lowsnr_crm.mp3"></ts-source>
+                            </ts-track>
+                            <ts-track title="Clean">
+                                <ts-source src="./examples/4/clean.mp3"></ts-source>
                             </ts-track>
                           </div>
 
                     </p>
-                    <h5>Item 4</h5>
+                    <h5>Item 4 (SNR: -2dB, Speaker: Male)</h5>
                     <p>
                     <div class="choir">
                               <ts-track title="Noisy">
-                                  <ts-source src="./NR/P12/Noisy.mp3"></ts-source>
+                                  <ts-source src="./examples/5/clean_fileid_26_*1-97793-A-31*_snr-2_tl-33_fileid_341.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="DeepFilterNet"</sub> >
-                                  <ts-source src="./NR/P12/df.mp3"></ts-source>
+                              <ts-track title="DCCRN"</sub> >
+                                  <ts-source src="./examples/5/dccrn_speech_mt_lowsnr_crm.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="DeepFilterNet2">
-                                  <ts-source src="./NR/P12/df2.mp3"></ts-source>
+                              <ts-track title="TaylorSENet">
+                                  <ts-source src="./examples/5/taylorsenet_speech_mt_lowsnr_crm.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="ULCNetFreq">
-                                  <ts-source src="./NR/P12/Freq.mp3"></ts-source>
+                              <ts-track title="FullSubNet+">
+                                  <ts-source src="./examples/5/fullsubnetplus_speech_mt_lowsnr_crm.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="ULCNetMS">
-                                  <ts-source src="./NR/P12/MS.mp3"></ts-source>
+                              <ts-track title="GCRN">
+                                  <ts-source src="./examples/5/gcrn_speech_mt_lowsnr_crm.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="ULCNetAER+ULCNetFreq">
-                                <ts-source src="./NR/P12/aer+ainr.mp3"></ts-source>
+                              <ts-track title="CRN">
+                                <ts-source src="./examples/5/crn_speech_mt_lowsnr_crm.mp3"></ts-source>
                             </ts-track>
-                              <ts-track title="Proposed ULCNetAENR">
-                                <ts-source src="./NR/P12/aenr.mp3"></ts-source>
+                              <ts-track title="DDAEC">
+                                <ts-source src="./examples/5/ddaec_speech_mt_lowsnr_crm.mp3"></ts-source>
+                            </ts-track>
+                            <ts-track title="Clean">
+                                <ts-source src="./examples/5/clean.mp3"></ts-source>
                             </ts-track>
                           </div>
-                      <h5>Item 5</h5>
+                    </p>
+                      <h5>Item 5 (SNR: 0dB, Speaker: Male)</h5>
                     <p>
-                      <div class="choir">
+                    <div class="choir">
                               <ts-track title="Noisy">
-                                  <ts-source src="./NR/M7/Noisy.mp3"></ts-source>
+                                  <ts-source src="./examples/6/clean_fileid_33_*3-167096-A-31*_snr0_tl-21_fileid_328.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="DeepFilterNet"</sub> >
-                                  <ts-source src="./NR/M7/df.mp3"></ts-source>
+                              <ts-track title="DCCRN"</sub> >
+                                  <ts-source src="./examples/6/dccrn_speech_mt_lowsnr_crm.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="DeepFilterNet2">
-                                  <ts-source src="./NR/M7/df2.mp3"></ts-source>
+                              <ts-track title="TaylorSENet">
+                                  <ts-source src="./examples/6/taylorsenet_speech_mt_lowsnr_crm.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="ULCNetFreq">
-                                  <ts-source src="./NR/M7/Freq.mp3"></ts-source>
+                              <ts-track title="FullSubNet+">
+                                  <ts-source src="./examples/6/fullsubnetplus_speech_mt_lowsnr_crm.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="ULCNetMS">
-                                  <ts-source src="./NR/M7/MS.mp3"></ts-source>
+                              <ts-track title="GCRN">
+                                  <ts-source src="./examples/6/gcrn_speech_mt_lowsnr_crm.mp3"></ts-source>
                               </ts-track>
-                              <ts-track title="ULCNetAER+ULCNetFreq">
-                                <ts-source src="./NR/M7/aer+ainr.mp3"></ts-source>
+                              <ts-track title="CRN">
+                                <ts-source src="./examples/6/crn_speech_mt_lowsnr_crm.mp3"></ts-source>
                             </ts-track>
-                              <ts-track title="Proposed ULCNetAENR">
-                                <ts-source src="./NR/M7/aenr.mp3"></ts-source>
+                              <ts-track title="DDAEC">
+                                <ts-source src="./examples/6/ddaec_speech_mt_lowsnr_crm.mp3"></ts-source>
+                            </ts-track>
+                            <ts-track title="Clean">
+                                <ts-source src="./examples/6/clean.mp3"></ts-source>
                             </ts-track>
                           </div>
+                    </p>
+                      <h5>Item 6 (SNR: -14dB, Speaker: Female)</h5>
+                    <p>
+                    <div class="choir">
+                              <ts-track title="Noisy">
+                                  <ts-source src="./examples/7/clean_fileid_37_*5-156026-C-4*_snr-14_tl-27_fileid_383.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DCCRN"</sub> >
+                                  <ts-source src="./examples/7/dccrn_speech_mt_lowsnr_crm.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="TaylorSENet">
+                                  <ts-source src="./examples/7/taylorsenet_speech_mt_lowsnr_crm.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="FullSubNet+">
+                                  <ts-source src="./examples/7/fullsubnetplus_speech_mt_lowsnr_crm.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="GCRN">
+                                  <ts-source src="./examples/7/gcrn_speech_mt_lowsnr_crm.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="CRN">
+                                <ts-source src="./examples/7/crn_speech_mt_lowsnr_crm.mp3"></ts-source>
+                            </ts-track>
+                              <ts-track title="DDAEC">
+                                <ts-source src="./examples/7/ddaec_speech_mt_lowsnr_crm.mp3"></ts-source>
+                            </ts-track>
+                            <ts-track title="Clean">
+                                <ts-source src="./examples/7/clean.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+
+                      </p>
+                      <h5>Item 7 (SNR: -6dB, Speaker: Female)</h5>
+                    <p>
+                    <div class="choir">
+                              <ts-track title="Noisy">
+                                  <ts-source src="./examples/8/clean_fileid_42_*5-257839-A-14*_snr-6_tl-20_fileid_202.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DCCRN"</sub> >
+                                  <ts-source src="./examples/8/dccrn_speech_mt_lowsnr_crm.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="TaylorSENet">
+                                  <ts-source src="./examples/8/taylorsenet_speech_mt_lowsnr_crm.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="FullSubNet+">
+                                  <ts-source src="./examples/8/fullsubnetplus_speech_mt_lowsnr_crm.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="GCRN">
+                                  <ts-source src="./examples/8/gcrn_speech_mt_lowsnr_crm.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="CRN">
+                                <ts-source src="./examples/8/crn_speech_mt_lowsnr_crm.mp3"></ts-source>
+                            </ts-track>
+                              <ts-track title="DDAEC">
+                                <ts-source src="./examples/8/ddaec_speech_mt_lowsnr_crm.mp3"></ts-source>
+                            </ts-track>
+                            <ts-track title="Clean">
+                                <ts-source src="./examples/8/clean.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+                     </p>
+                      <h5>Item 8 (SNR: -11dB, Speaker: Female)</h5>
+                    <p>
+                    <div class="choir">
+                              <ts-track title="Noisy">
+                                  <ts-source src="./examples/9/clean_fileid_54_*4-102844-A-49*_snr-11_tl-20_fileid_170.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DCCRN"</sub> >
+                                  <ts-source src="./examples/9/dccrn_speech_mt_lowsnr_crm.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="TaylorSENet">
+                                  <ts-source src="./examples/9/taylorsenet_speech_mt_lowsnr_crm.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="FullSubNet+">
+                                  <ts-source src="./examples/9/fullsubnetplus_speech_mt_lowsnr_crm.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="GCRN">
+                                  <ts-source src="./examples/9/gcrn_speech_mt_lowsnr_crm.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="CRN">
+                                <ts-source src="./examples/9/crn_speech_mt_lowsnr_crm.mp3"></ts-source>
+                            </ts-track>
+                              <ts-track title="DDAEC">
+                                <ts-source src="./examples/9/ddaec_speech_mt_lowsnr_crm.mp3"></ts-source>
+                            </ts-track>
+                            <ts-track title="Clean">
+                                <ts-source src="./examples/9/clean.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+                   
+                    </p>
+                      <h5>Item 9 (SNR: -4dB, Speaker: Female)</h5>
+                    <p>
+                    <div class="choir">
+                              <ts-track title="Noisy">
+                                  <ts-source src="./examples/10/clean_fileid_66_*4-181563-A-12*_snr-4_tl-20_fileid_629.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DCCRN"</sub> >
+                                  <ts-source src="./examples/10/dccrn_speech_mt_lowsnr_crm.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="TaylorSENet">
+                                  <ts-source src="./examples/10/taylorsenet_speech_mt_lowsnr_crm.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="FullSubNet+">
+                                  <ts-source src="./examples/10/fullsubnetplus_speech_mt_lowsnr_crm.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="GCRN">
+                                  <ts-source src="./examples/10/gcrn_speech_mt_lowsnr_crm.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="CRN">
+                                <ts-source src="./examples/10/crn_speech_mt_lowsnr_crm.mp3"></ts-source>
+                            </ts-track>
+                              <ts-track title="DDAEC">
+                                <ts-source src="./examples/10/ddaec_speech_mt_lowsnr_crm.mp3"></ts-source>
+                            </ts-track>
+                            <ts-track title="Clean">
+                                <ts-source src="./examples/10/clean.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+                  </p>
+                      <h5>Item 10 (SNR: -13dB, Speaker: Female)</h5>
+                    <p>
+                    <div class="choir">
+                              <ts-track title="Noisy">
+                                  <ts-source src="./examples/11/clean_fileid_90_*1-64473-A-45*_snr-13_tl-20_fileid_34.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="DCCRN"</sub> >
+                                  <ts-source src="./examples/11/dccrn_speech_mt_lowsnr_crm.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="TaylorSENet">
+                                  <ts-source src="./examples/11/taylorsenet_speech_mt_lowsnr_crm.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="FullSubNet+">
+                                  <ts-source src="./examples/11/fullsubnetplus_speech_mt_lowsnr_crm.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="GCRN">
+                                  <ts-source src="./examples/11/gcrn_speech_mt_lowsnr_crm.mp3"></ts-source>
+                              </ts-track>
+                              <ts-track title="CRN">
+                                <ts-source src="./examples/11/crn_speech_mt_lowsnr_crm.mp3"></ts-source>
+                            </ts-track>
+                              <ts-track title="DDAEC">
+                                <ts-source src="./examples/11/ddaec_speech_mt_lowsnr_crm.mp3"></ts-source>
+                            </ts-track>
+                            <ts-track title="Clean">
+                                <ts-source src="./examples/11/clean.mp3"></ts-source>
+                            </ts-track>
+                          </div>
+
 
                     </p>
 
@@ -566,7 +355,7 @@
      <hr> </hr> 
      <hr> </hr> 
                         <h2>Conditions of Use</h2>
-                        <p> 1.Fraunhofer IIS generated this sound material based on material that is publicly available on  <a href="https://github.com/microsoft/DNS-Challenge"> DNS Challenge </a> and <a href="https://github.com/microsoft/AEC-Challenge"> AEC Challenge </a>. </p>
+                        <p> 1.Fraunhofer IIS generated this sound material based on material that is publicly available on  <a href="https://github.com/microsoft/DNS-Challenge"> DNS Challenge </a> and <a href="https://github.com/karolpiczak/ESC-50"> ESC-50 </a>. </p>
                          <p> 2.The content has been processed using generally accepted rules of technology as well as scientific care, but not actual attainment of any expected feature. </p>
      <p> 3. With the exception of willful intent or gross negligence, Fraunhofer IIS shall not be liable that Open Source software or other third-party software is free from any error or claim or its fitness for a particular purpose, even if included within the Sound Material. </p>
 <p> 4.The Sound Material shall only be used for testing and appreciating noise reduction techniques and shall not be copied, publicly transmitted, distributed, lent or modified for any other reason. </p>
